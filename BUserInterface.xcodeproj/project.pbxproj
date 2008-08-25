@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		438227350C7F62CF007BE473 /* Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382272C0C7F62C9007BE473 /* Blocks.framework */; };
+		43864E090C97156F009DF7B9 /* BUserInterfaceController.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D4B5540C7F1CC800ACB063 /* BUserInterfaceController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43864E0A0C971573009DF7B9 /* BMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B418C20C8070F50098B651 /* BMenuController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43B418C40C8070F50098B651 /* BMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B418C30C8070F50098B651 /* BMenuController.m */; };
+		43D4B54E0C7F1C5100ACB063 /* Plugin.xml in Resources */ = {isa = PBXBuildFile; fileRef = 43D4B54D0C7F1C5100ACB063 /* Plugin.xml */; };
+		43D4B5560C7F1CC800ACB063 /* BUserInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D4B5550C7F1CC800ACB063 /* BUserInterfaceController.m */; };
+		887A07810E3654B3005FADEB /* BUserInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 887A077F0E3654B3005FADEB /* BUserInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		887A07820E3654B3005FADEB /* BUserInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A07800E3654B3005FADEB /* BUserInterface.m */; };
+		887A08940E36590E005FADEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887A08930E36590E005FADEB /* QuartzCore.framework */; };
+		8892A2C10D5CAB560033DD11 /* SpecialMenuTemplates.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8892A2BF0D5CAB560033DD11 /* SpecialMenuTemplates.xib */; };
+		889A4F5D0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 889A4F5C0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown */; };
+		889A4F5F0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 889A4F5E0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown */; };
+		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4382272B0C7F62C9007BE473 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 438227270C7F62C9007BE473 /* Blocks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Blocks;
+		};
+		43F596DD0C9044C400D691C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 438227270C7F62C9007BE473 /* Blocks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Blocks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF630370AF2F00C91783 /* BUserInterface_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserInterface_Prefix.pch; sourceTree = "<group>"; };
+		438227270C7F62C9007BE473 /* Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Blocks.xcodeproj; path = ../Blocks/Blocks.xcodeproj; sourceTree = SOURCE_ROOT; };
+		43864CCC0C96EBD2009DF7B9 /* BToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BToolbarController.h; sourceTree = "<group>"; };
+		43864CCD0C96EBD2009DF7B9 /* BToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BToolbarController.m; sourceTree = "<group>"; };
+		43B418C20C8070F50098B651 /* BMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMenuController.h; sourceTree = "<group>"; };
+		43B418C30C8070F50098B651 /* BMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMenuController.m; sourceTree = "<group>"; };
+		43D4B54D0C7F1C5100ACB063 /* Plugin.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Plugin.xml; sourceTree = "<group>"; };
+		43D4B5540C7F1CC800ACB063 /* BUserInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserInterfaceController.h; sourceTree = "<group>"; };
+		43D4B5550C7F1CC800ACB063 /* BUserInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUserInterfaceController.m; sourceTree = "<group>"; };
+		887A077F0E3654B3005FADEB /* BUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserInterface.h; sourceTree = "<group>"; };
+		887A07800E3654B3005FADEB /* BUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUserInterface.m; sourceTree = "<group>"; };
+		887A08930E36590E005FADEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		8892A2C00D5CAB560033DD11 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SpecialMenuTemplates.xib; sourceTree = "<group>"; };
+		889A4F5C0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.blocks.BUserInterface.markdown; sourceTree = "<group>"; };
+		889A4F5E0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.blocks.BUserInterface.menus.markdown; sourceTree = "<group>"; wrapsLines = 1; };
+		8D5B49B6048680CD000E48DA /* BUserInterface.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUserInterface.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				438227350C7F62CF007BE473 /* Blocks.framework in Frameworks */,
+				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				887A08940E36590E005FADEB /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* BUserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				438227270C7F62C9007BE473 /* Blocks.xcodeproj */,
+				887A077F0E3654B3005FADEB /* BUserInterface.h */,
+				887A07800E3654B3005FADEB /* BUserInterface.m */,
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32C88E010371C26100C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = BUserInterface;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B7048680CD000E48DA /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				43D4B54D0C7F1C5100ACB063 /* Plugin.xml */,
+				889A4F5C0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown */,
+				889A4F5E0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown */,
+				8892A2BF0D5CAB560033DD11 /* SpecialMenuTemplates.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				43D4B5540C7F1CC800ACB063 /* BUserInterfaceController.h */,
+				43D4B5550C7F1CC800ACB063 /* BUserInterfaceController.m */,
+				43B418C20C8070F50098B651 /* BMenuController.h */,
+				43B418C30C8070F50098B651 /* BMenuController.m */,
+				43864CCC0C96EBD2009DF7B9 /* BToolbarController.h */,
+				43864CCD0C96EBD2009DF7B9 /* BToolbarController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+				D2F7E65807B2D6F200F64583 /* CoreData.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				887A08930E36590E005FADEB /* QuartzCore.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* BUserInterface.plugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32C88E010371C26100C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF630370AF2F00C91783 /* BUserInterface_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		438227280C7F62C9007BE473 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4382272C0C7F62C9007BE473 /* Blocks.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		43864E050C97155B009DF7B9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				887A07810E3654B3005FADEB /* BUserInterface.h in Headers */,
+				43864E090C97156F009DF7B9 /* BUserInterfaceController.h in Headers */,
+				43864E0A0C971573009DF7B9 /* BMenuController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8D5B49AC048680CD000E48DA /* BUserInterface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BUserInterface" */;
+			buildPhases = (
+				43F596D20C90446A00D691C2 /* Run genstrings Script */,
+				43864E050C97155B009DF7B9 /* Headers */,
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43F596DE0C9044C400D691C2 /* PBXTargetDependency */,
+			);
+			name = BUserInterface;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = BUserInterface;
+			productReference = 8D5B49B6048680CD000E48DA /* BUserInterface.plugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BUserInterface" */;
+			compatibilityVersion = "Xcode 3.0";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* BUserInterface */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 438227280C7F62C9007BE473 /* Products */;
+					ProjectRef = 438227270C7F62C9007BE473 /* Blocks.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* BUserInterface */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4382272C0C7F62C9007BE473 /* Blocks.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Blocks.framework;
+			remoteRef = 4382272B0C7F62C9007BE473 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				43D4B54E0C7F1C5100ACB063 /* Plugin.xml in Resources */,
+				889A4F5D0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown in Resources */,
+				889A4F5F0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown in Resources */,
+				8892A2C10D5CAB560033DD11 /* SpecialMenuTemplates.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43F596D20C90446A00D691C2 /* Run genstrings Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run genstrings Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION != 'Release' ]; then\n\texit\nfi\n\ngenstrings -s BLocalizedString -o English.lproj/ *.[mch] */*.[mch]";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43D4B5560C7F1CC800ACB063 /* BUserInterfaceController.m in Sources */,
+				43B418C40C8070F50098B651 /* BMenuController.m in Sources */,
+				887A07820E3654B3005FADEB /* BUserInterface.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43F596DE0C9044C400D691C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Blocks;
+			targetProxy = 43F596DD0C9044C400D691C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8892A2BF0D5CAB560033DD11 /* SpecialMenuTemplates.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8892A2C00D5CAB560033DD11 /* English */,
+			);
+			name = SpecialMenuTemplates.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BUserInterface_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = BUserInterface;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BUserInterface_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = BUserInterface;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BUserInterface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BUserInterface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

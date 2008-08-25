@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin
+	id="com.blocks.BUserInterface"
+	label="User Interface"
+	version="1.0.0"
+	info="Blocks User Interface">
+
+	<requirement bundle="com.blocks.Blocks" version="1.0.0" />
+	<requirement bundle="com.blocks.BLifecycle" version="1.0.0" />
+
+	<extension-point id="menus" label="Menus" />
+<!--	<extension-point id="toolbars" label="Toolbars" /> -->
+
+	<extension point="com.blocks.BLifecycle.lifecycle">
+		<applicationWillFinishLaunching class="BUserInterfaceController sharedInstance" />
+	</extension>
+	
+	<extension point="com.blocks.BUserInterface.menus">
+		<menu id="com.blocks.BUserInterface.menus.main">
+			<menuitem title="" id="application" submenu="com.blocks.BUserInterface.menus.main.application" />
+			<menuitem title="%File" id="file" submenu="com.blocks.BUserInterface.menus.main.file" />
+			<menuitem title="%Edit" id="edit" submenu="com.blocks.BUserInterface.menus.main.edit" />
+			<menuitem title="%Window" id="window" submenu="com.blocks.BUserInterface.menus.main.window" />
+			<menuitem title="%Help" id="help" submenu="com.blocks.BUserInterface.menus.main.help" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.application">
+			<menuitem title="%About NewApplication" id="about" action="orderFrontStandardAboutPanel:" target="NSApplication sharedApplication" />
+			<separator group="servicesGroup" />
+			<menuitem title="%Services" id="services" submenu="com.blocks.BUserInterface.menus.main.application.service" />
+			<separator group="hideGroup" />
+			<menuitem title="%Hide NewApplication" id="hide" action="hide:" keyEquivalent="h" target="NSApplication sharedApplication" />
+			<menuitem title="%Hide Others" id="hideOthers" action="hideOtherApplications:" keyEquivalent="h" keyEquivalentModifierMask="NSCommandKeyMask|NSAlternateKeyMask" target="NSApplication sharedApplication" />
+			<menuitem title="%Show All" id="showAll" action="unhideAllApplications:" target="NSApplication sharedApplication" />
+			<separator group="quitGroup" />
+			<menuitem title="%Quit NewApplication" id="quit" action="terminate:" keyEquivalent="q" target="NSApplication sharedApplication" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.file">
+			<menuitem title="%New" id="new" action="newDocument:" keyEquivalent="n" />
+			<menuitem title="%Open" id="open" action="openDocument:" keyEquivalent="o" />
+			<menuitem title="%Open Recent" id="openRecent" submenu="com.blocks.BUserInterface.menus.main.file.openRecent" />
+			<separator group="closeGroup" />
+			<menuitem title="%Close" id="close" action="performClose:" keyEquivalent="w" />
+			<menuitem title="%Save" id="save" action="saveDocument:" keyEquivalent="s" />
+			<menuitem title="%Save As..." id="saveAs" action="saveDocumentAs:" keyEquivalent="S" />
+			<menuitem title="%Revert to Saved" id="revertToSaved" action="revertDocumentToSaved:" />			
+			<separator group="pageSetupGroup" />
+			<menuitem title="%Page Setup..." id="pageSetup" action="runPageLayout:" keyEquivalent="P" />
+			<menuitem title="%Print" id="print" action="printDocument:" keyEquivalent="p" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.edit">
+			<menuitem title="%Undo" id="undo" action="undo:" keyEquivalent="z" />
+			<menuitem title="%Redo" id="redo" action="redo:" keyEquivalent="Z" />
+			<separator group="cutGroup" />
+			<menuitem title="%Cut" id="cut" action="cut:" keyEquivalent="x" />
+			<menuitem title="%Copy" id="copy" action="copy:" keyEquivalent="c" />
+			<menuitem title="%Paste" id="paste" action="paste:" keyEquivalent="v" />
+			<menuitem title="%Paste and Match Style" id="pasteAndMatchStyle" action="pasteAsPlainText:" keyEquivalent="v" keyEquivalentModifierMask="NSCommandKeyMask|NSShiftKeyMask|NSAlternateKeyMask" />
+			<menuitem title="%Delete" id="delete" action="delete:" />
+			<menuitem title="%Select All" id="selectAll" action="selectAll:" keyEquivalent="a" />
+			<separator group="findGroup" />
+			<menuitem title="%Find" id="find" submenu="com.blocks.BUserInterface.menus.main.edit.find" />
+			<menuitem title="%Spelling and Grammar" id="spelling" submenu="com.blocks.BUserInterface.menus.main.edit.spelling" />
+			<menuitem title="%Substitutions" id="substitutions" submenu="com.blocks.BUserInterface.menus.main.edit.substitutions" />
+			<menuitem title="%Speech" id="speach" submenu="com.blocks.BUserInterface.menus.main.edit.speech" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.main.edit.find">
+			<menuitem title="%Find..." id="find" tag="1" action="performFindPanelAction:" keyEquivalent="f" />
+			<menuitem title="%Find Next" id="findNext" tag="2" action="performFindPanelAction:" keyEquivalent="g" />
+			<menuitem title="%Find Previous" id="findPrevious" tag="3" action="performFindPanelAction:" keyEquivalent="G" />
+			<menuitem title="%Use Selection for Find" id="useSelectionForFind" tag="7" action="performFindPanelAction:" keyEquivalent="e" />
+			<menuitem title="%Jump to Selection" tag="7" id="jumpToSelection" action="centerSelectionInVisibleArea:" keyEquivalent="j" />
+			<menuitem title="%Replace all in Selection" tag="8" id="replaceAllInSelection" action="performFindPanelAction:" keyEquivalent="A" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.main.edit.spelling">
+			<menuitem title="%Show Spelling and Grammar" id="showSpellingAndGrammar" action="showGuessPanel:" keyEquivalent=":" />
+			<menuitem title="%Check Document Now" id="checkDocumentNow" action="checkSpelling:" keyEquivalent=";" />
+			<menuitem title="%Check Spelling While Typing" id="checkSpellingWhileTyping" action="toggleContinuousSpellChecking:" />
+			<menuitem title="%Check Grammar With Spelling" id="checkGrammarWithSpelling" action="toggleGrammarChecking:" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.edit.substitutions">
+			<menuitem title="%Smart Copy/Paste" id="smartCopyPaste" action="toggleSmartInsertDelete:" keyEquivalent="f" />
+			<menuitem title="%Smart Quotes" id="smartQuotes" action="toggleAutomaticQuoteSubstitution:" keyEquivalent="g" />
+			<menuitem title="%Smart Links" id="smartLinks" action="toggleAutomaticLinkDetection:" keyEquivalent="G" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.edit.speech">
+			<menuitem title="%Start Speaking" id="startSpeaking" action="startSpeaking:" />
+			<menuitem title="%Stop Speaking" id="stopSpeaking" action="stopSpeaking:" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.window">
+			<menuitem title="%Minimize" id="minimize" action="performMiniaturize:" keyEquivalent="m" />
+			<menuitem title="%Zoom" id="zoom" action="performZoom:" />
+			<separator group="bringAllToFrontGroup" />
+			<menuitem title="%Bring All to Front" id="bringAllToFront" action="arrangeInFront:" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.main.help">
+			<menuitem title="%NewApplication Help" id="help" action="openApplicationHelp:" keyEquivalent="?" />
+			<separator group="webPageGroup" />
+			<menuitem title="%Web Page..." id="webPage" action="openApplicationWebPage:" />
+			<menuitem title="%User Forums..." id="userForums" action="openApplicationUserForums:" />
+			<menuitem title="%Release Notes..." id="releaseNotes" action="openApplicationReleaseNotes:" />
+			<menuitem title="%Acknowledgments..." id="acknowledgments" action="openApplicationAcknowledgments:" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.format.font">
+			<menuitem title="%Show Fonts" id="showFonts" action="orderFrontFontPanel:" keyEquivalent="t" target="NSFontManager sharedFontManager" />
+			<menuitem title="%Bold" id="bold" action="addFontTrait:" keyEquivalent="b" target="NSFontManager sharedFontManager" tag="2" />
+			<menuitem title="%Italic" id="italic" action="addFontTrait:" keyEquivalent="i" target="NSFontManager sharedFontManager" tag="1" />
+			<menuitem title="%Underline" id="underline" action="underline:" keyEquivalent="u" />
+			<menuitem title="%Outline" id="outline" action="outline:" />
+			<menuitem title="%Styles..." id="styles" action="orderFrontStylesPanel:" target="NSFontManager sharedFontManager" />
+			<separator group="biggerGroup" />
+			<menuitem title="%Bigger" id="bigger" action="modifyFont:" keyEquivalent="+" target="NSFontManager sharedFontManager" tag="3" />
+			<menuitem title="%Smaller" id="smaller" action="modifyFont:" keyEquivalent="-" target="NSFontManager sharedFontManager" tag="4" />			
+			<separator group="kernGroup" />
+			<menuitem title="%Kern" id="kern" submenu="com.blocks.BUserInterface.menus.format.font.kern" />
+			<menuitem title="%Ligature" id="ligature" submenu="com.blocks.BUserInterface.menus.format.font.ligature" />
+			<menuitem title="%Baseline" id="baseline" submenu="com.blocks.BUserInterface.menus.format.font.baseline" />
+			<menuitem title="%Character Shape" id="characterShape" submenu="com.blocks.BUserInterface.menus.format.font.characterShape" />
+			<separator group="showColorsGroup" />
+			<menuitem title="%Show Colors" id="showColors" action="orderFrontColorPanel:" keyEquivalent="C" />
+			<separator group="copyStyleGroup" />
+			<menuitem title="%Copy Style" id="copyStyle" action="copyFont:" keyEquivalent="c" keyEquivalentModifierMask="NSCommandKeyMask|NSAlternateKeyMask" />
+			<menuitem title="%Paste Style" id="pasteStyle" action="pasteFont:" keyEquivalent="v" keyEquivalentModifierMask="NSCommandKeyMask|NSAlternateKeyMask" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.format.font.kern">
+			<menuitem title="%Use Default" id="useDefault" action="useStandardKerning:" />
+			<menuitem title="%Use None" id="useNone" action="turnOffKerning:" />
+			<menuitem title="%Tighten" id="tighten" action="tightenKerning:" />
+			<menuitem title="%Loosen" id="loosen" action="loosenKerning:" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.format.font.ligature">
+			<menuitem title="%Use Default" id="useDefault" action="useStandardLigatures:" />
+			<menuitem title="%Use None" id="useNone" action="turnOffLigatures:" />
+			<menuitem title="%Use All" id="useAll" action="useAllLigatures:" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.format.font.baseline">
+			<menuitem title="%Use Default" id="useDefault" action="unscript:" />
+			<menuitem title="%Superscript" id="superscript" action="superscript:" />
+			<menuitem title="%Subscript" id="subscript" action="subscript:" />
+			<menuitem title="%Raise" id="raise" action="raiseBaseline:" />
+			<menuitem title="%Lower" id="lower" action="lowerBaseline:" />
+		</menu>
+		
+		<menu id="com.blocks.BUserInterface.menus.format.font.characterShape">
+			<menuitem title="%Traditional Form" id="traditionalForm" action="toggleTraditionalCharacterShape:" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.format.text">
+			<menuitem title="%Align Left" id="alignLeft" action="alignLeft:" keyEquivalent="{" />
+			<menuitem title="%Center" id="center" action="alignCenter:" keyEquivalent="|" />
+			<menuitem title="%Align Right" id="alignRight" action="alignRight:" keyEquivalent="}" />
+			<menuitem title="%Justify" id="justify" action="alignJustified:" />
+			<separator group="writingDirectionGroup" />
+			<menuitem title="%Writing Direction" id="writingDirection" submenu="com.blocks.BUserInterface.menus.format.text.writingDirection" />
+			<separator group="showRulerGroup" />
+			<menuitem title="%Show Ruler" id="showRuler" action="toggleRuler:" keyEquivalent="r" />
+			<menuitem title="%Copy Ruler" id="copyRuler" action="copyRuler:" keyEquivalent="c" keyEquivalentModifierMask="NSCommandKeyMask|NSControlKeyMask" />
+			<menuitem title="%Paste Ruler" id="pasteRuler" action="pasteRuler:" keyEquivalent="v" keyEquivalentModifierMask="NSCommandKeyMask|NSControlKeyMask" />
+			<separator group="spacingGroup" />
+			<menuitem title="%Spacing..." id="spacing" action="orderFrontSpacingPanel:" />
+			<menuitem title="%Link..." id="link" action="orderFrontLinkPanel:" />
+			<menuitem title="%List..." id="list" action="orderFrontListPanel:" />
+			<menuitem title="%Table..." id="table" action="orderFrontTablePanel:" />
+		</menu>
+
+		<menu id="com.blocks.BUserInterface.menus.format.text.writingDirection">
+			<menuitem title="%Right to Left" id="rightToLeft" action="toggleBaseWritingDirection:" />
+		</menu>
+		
+	</extension>
+</plugin>
