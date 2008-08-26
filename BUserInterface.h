@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BUserInterfaceController.h"
 #import "BMenuController.h"
-#import "BToolbarController.h"
 
 @interface NSImage (BUserInterfaceAdditions)
 
