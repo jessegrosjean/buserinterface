@@ -19,6 +19,10 @@
 		8892A2C10D5CAB560033DD11 /* SpecialMenuTemplates.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8892A2BF0D5CAB560033DD11 /* SpecialMenuTemplates.xib */; };
 		889A4F5D0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 889A4F5C0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown */; };
 		889A4F5F0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 889A4F5E0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown */; };
+		889D293F0E7584D100DB268E /* BToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 889D293D0E7584D100DB268E /* BToolbar.h */; };
+		889D29400E7584D100DB268E /* BToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 889D293E0E7584D100DB268E /* BToolbar.m */; };
+		88BB2CAE0E70B76300153876 /* BToolbarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 43864CCC0C96EBD2009DF7B9 /* BToolbarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88BB2CCB0E70B7F900153876 /* BToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43864CCD0C96EBD2009DF7B9 /* BToolbarController.m */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +64,8 @@
 		8892A2C00D5CAB560033DD11 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SpecialMenuTemplates.xib; sourceTree = "<group>"; };
 		889A4F5C0D5A5D9800D1E8E9 /* com.blocks.BUserInterface.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.blocks.BUserInterface.markdown; sourceTree = "<group>"; };
 		889A4F5E0D5A5DAA00D1E8E9 /* com.blocks.BUserInterface.menus.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.blocks.BUserInterface.menus.markdown; sourceTree = "<group>"; wrapsLines = 1; };
+		889D293D0E7584D100DB268E /* BToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BToolbar.h; sourceTree = "<group>"; };
+		889D293E0E7584D100DB268E /* BToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BToolbar.m; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* BUserInterface.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUserInterface.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -119,6 +125,8 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				889D293D0E7584D100DB268E /* BToolbar.h */,
+				889D293E0E7584D100DB268E /* BToolbar.m */,
 				43D4B5540C7F1CC800ACB063 /* BUserInterfaceController.h */,
 				43D4B5550C7F1CC800ACB063 /* BUserInterfaceController.m */,
 				43B418C20C8070F50098B651 /* BMenuController.h */,
@@ -182,6 +190,8 @@
 				887A07810E3654B3005FADEB /* BUserInterface.h in Headers */,
 				43864E090C97156F009DF7B9 /* BUserInterfaceController.h in Headers */,
 				43864E0A0C971573009DF7B9 /* BMenuController.h in Headers */,
+				88BB2CAE0E70B76300153876 /* BToolbarController.h in Headers */,
+				889D293F0E7584D100DB268E /* BToolbar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +292,8 @@
 				43D4B5560C7F1CC800ACB063 /* BUserInterfaceController.m in Sources */,
 				43B418C40C8070F50098B651 /* BMenuController.m in Sources */,
 				887A07820E3654B3005FADEB /* BUserInterface.m in Sources */,
+				88BB2CCB0E70B7F900153876 /* BToolbarController.m in Sources */,
+				889D29400E7584D100DB268E /* BToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

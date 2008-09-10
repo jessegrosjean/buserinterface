@@ -16,6 +16,9 @@
 - (NSToolbarItem *)toolbarController:(BToolbarController *)toolbarController itemForItemIdentifier:(NSString *)itemIdentifier defaultToolbarItem:(NSToolbarItem *)defaultItem willBeInsertedIntoToolbar:(BOOL)flag;
 - (void)toolbarController:(BToolbarController *)toolbarController willAddItem:(NSNotification *)notification;
 - (void)toolbarController:(BToolbarController *)toolbarController didRemoveItem:(NSNotification *)notification;
+- (void)toolbarController:(BToolbarController *)toolbarController willShowToolbar:(NSToolbar *)toolbar;
+- (void)toolbarController:(BToolbarController *)toolbarController willHideToolbar:(NSToolbar *)toolbar;
+- (void)toolbarController:(BToolbarController *)toolbarController willRunCustomizationPaletteForToolbar:(NSToolbar *)toolbar;
 
 @end
 

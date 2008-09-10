@@ -10,7 +10,7 @@
 	<requirement bundle="com.blocks.BLifecycle" version="1.0.0" />
 
 	<extension-point id="menus" label="Menus" />
-<!--	<extension-point id="toolbars" label="Toolbars" /> -->
+	<extension-point id="toolbars" label="Toolbars" />
 
 	<extension point="com.blocks.BLifecycle.lifecycle">
 		<applicationWillFinishLaunching class="BUserInterfaceController sharedInstance" />

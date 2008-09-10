@@ -10,7 +10,20 @@
 #import <Blocks/Blocks.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BUserInterfaceController.h"
-#import "BMenuController.h"
+#import "BToolbarController.h"
+
+@interface NSApplication (BUserInterfaceAdditions)
+
++ (SEL)doubleTapShiftKeyAction;
++ (void)setDoubleTapShiftKeyAction:(SEL)action;
++ (SEL)doubleTapControlKeyAction;
++ (void)setDoubleTapControlKeyAction:(SEL)action;
++ (SEL)doubleTapAlternateKeyAction;
++ (void)setDoubleTapAlternateKeyAction:(SEL)action;
++ (SEL)doubleTapCommandKeyAction;
++ (void)setDoubleTapCommandKeyAction:(SEL)action;
+
+@end
 
 @interface NSImage (BUserInterfaceAdditions)
 
@@ -22,6 +35,7 @@
 
 @interface NSMenu (BUserInterfaceAdditions)
 
+- (NSArray *)allItems:(BOOL)includeSubmenus;
 - (NSMenuItem *)itemWithRepresentedObject:(id)representedObject;
 
 @end

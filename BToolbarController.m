@@ -7,6 +7,7 @@
 //
 
 #import "BToolbarController.h"
+#import "BToolbar.h"
 
 
 @interface BToolbarController (BToolbarControllerPrivate)
@@ -31,7 +32,7 @@
 
 - (NSToolbar *)toolbar {
 	if (!toolbar) {
-		toolbar = [[NSToolbar alloc] initWithIdentifier:toolbarIdentifier];
+		toolbar = [[BToolbar alloc] initWithIdentifier:toolbarIdentifier];
 		allowedItemIdentifiers = [[NSMutableArray alloc] init];
 		defaultItemIdentifiers = [[NSMutableArray alloc] init];
 		selectableItemIdentifiers = [[NSMutableArray alloc] init];
@@ -135,6 +136,30 @@
 - (void)toolbarDidRemoveItem:(NSNotification *)notification {
 	NSString *itemIdentifier = [notification valueForKeyPath:@"userInfo.item.itemIdentifier"];
 	[[self toolbarContributerFor:itemIdentifier] toolbarController:self didRemoveItem:notification];
+}
+
+- (void)toolbarWillShow:(NSToolbar *)aToolbar {
+	for (id <BToolbarContributerProtocol> each in [itemIdentifiersToContributers allValues]) {
+		if ([each conformsToProtocol:@protocol(BToolbarContributerProtocol)]) {
+			[each toolbarController:self willShowToolbar:aToolbar];
+		}
+	}
+}
+
+- (void)toolbarWillHide:(NSToolbar *)aToolbar {
+	for (id <BToolbarContributerProtocol> each in [itemIdentifiersToContributers allValues]) {
+		if ([each conformsToProtocol:@protocol(BToolbarContributerProtocol)]) {
+			[each toolbarController:self willHideToolbar:aToolbar];
+		}
+	}
+}
+
+- (void)toolbarWillRunCustomizationPalette:(NSToolbar *)aToolbar {
+	for (id <BToolbarContributerProtocol> each in [itemIdentifiersToContributers allValues]) {
+		if ([each conformsToProtocol:@protocol(BToolbarContributerProtocol)]) {
+			[each toolbarController:self willRunCustomizationPaletteForToolbar:aToolbar];
+		}
+	}
 }
 
 @end
