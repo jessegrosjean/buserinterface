@@ -210,6 +210,111 @@ static BOOL lastCommandKeyDown;
 
 @implementation NSMenu (BUserInterfaceAdditions)
 
++ (NSString *)keyEquivalentModifierMaskDescription:(NSUInteger)keyEquivalentModifierMask {
+	NSMutableArray *modifiers = [NSMutableArray array];
+	if (NSCommandKeyMask & keyEquivalentModifierMask) [modifiers addObject:@"Command"];
+	if (NSAlternateKeyMask & keyEquivalentModifierMask) [modifiers addObject:@"Option"];
+	if (NSControlKeyMask & keyEquivalentModifierMask) [modifiers addObject:@"Control"];
+	if (NSShiftKeyMask & keyEquivalentModifierMask) [modifiers addObject:@"Shift"];
+	return [modifiers componentsJoinedByString:@"-"];
+}
+
++ (NSAttributedString *)mainMenuKeyEquivalentsReport {
+	NSMenu *mainMenu = [NSApp mainMenu];
+	NSArray *allMenuItems = [mainMenu allItems:YES];
+	NSMutableDictionary *existingKeyEquivalents = [NSMutableDictionary dictionary];
+	NSMutableDictionary *validKeyEquivalentsToStringRepresentations = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+																	   @"Space",@" ", 
+																	   @"ParagraphSeparator", [NSString stringWithFormat:@"%C", NSParagraphSeparatorCharacter], 
+																	   @"LineSeparator", [NSString stringWithFormat:@"%C", NSLineSeparatorCharacter],
+																	   @"Tab", [NSString stringWithFormat:@"%C", NSTabCharacter], 
+																	   @"FormFeed",[NSString stringWithFormat:@"%C", NSFormFeedCharacter], 
+																	   @"Newline",[NSString stringWithFormat:@"%C", NSNewlineCharacter],  
+																	   @"CarriageReturn",[NSString stringWithFormat:@"%C", NSCarriageReturnCharacter],  
+																	   @"Enter",[NSString stringWithFormat:@"%C", NSEnterCharacter],  
+																	   @"Backspace",[NSString stringWithFormat:@"%C", NSBackspaceCharacter],  
+																	   @"Delete",[NSString stringWithFormat:@"%C", NSDeleteCharacter], 
+																	   @"UpArrow",[NSString stringWithFormat:@"%C", NSUpArrowFunctionKey], 
+																	   @"DownArrow",[NSString stringWithFormat:@"%C", NSDownArrowFunctionKey], 
+																	   @"LeftArrow",[NSString stringWithFormat:@"%C", NSLeftArrowFunctionKey], 
+																	   @"RightArrow",[NSString stringWithFormat:@"%C", NSRightArrowFunctionKey], 
+																	   @"Insert",[NSString stringWithFormat:@"%C", NSInsertFunctionKey], 
+																	   @"Home",[NSString stringWithFormat:@"%C", NSHomeFunctionKey], 
+																	   @"PageUp",[NSString stringWithFormat:@"%C", NSPageUpFunctionKey], 
+																	   @"PageDown",[NSString stringWithFormat:@"%C", NSPageDownFunctionKey], 
+																	   nil];
+	
+	for (NSString *each in [@"` ~ 1 ! 2 @ 3 # 4 $ 5 % 6 ^ 7 & 8 * 9 ( 0 ) - _ = + q w e r t y u i o p [ { ] } \\ | a s d f g h j k l ; : ' \" z x c v b n m , < . > / ?" componentsSeparatedByString:@" "]) {
+		[validKeyEquivalentsToStringRepresentations setObject:[each uppercaseString] forKey:each];
+	}
+
+	for (NSMenuItem *eachMenuItem in allMenuItems) {
+		NSString *keyEquivalent = [eachMenuItem keyEquivalent];
+
+		if ([keyEquivalent length] > 0) {								
+			NSUInteger keyEquivalentModifierMask = [eachMenuItem keyEquivalentModifierMask];
+			
+			if (![keyEquivalent isEqualToString:[keyEquivalent lowercaseString]]) {
+				keyEquivalent = [keyEquivalent lowercaseString];
+				keyEquivalentModifierMask |= NSShiftKeyMask;
+			}
+
+			keyEquivalent = [validKeyEquivalentsToStringRepresentations objectForKey:keyEquivalent];
+			
+			if (keyEquivalent) {
+				keyEquivalent = [[self keyEquivalentModifierMaskDescription:keyEquivalentModifierMask] stringByAppendingFormat:@"-%@", keyEquivalent];				
+				[existingKeyEquivalents setObject:eachMenuItem forKey:keyEquivalent];
+			} else {
+				NSLog(@"ERROR Didn't find mapping for %@", [eachMenuItem description]);
+			}
+		}
+	}
+
+	NSArray *modifierCombinations = [NSArray arrayWithObjects:
+									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask],
+									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSShiftKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSShiftKeyMask | NSAlternateKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSShiftKeyMask | NSAlternateKeyMask | NSControlKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSAlternateKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSAlternateKeyMask | NSControlKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSCommandKeyMask | NSControlKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSAlternateKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSAlternateKeyMask | NSShiftKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSAlternateKeyMask | NSShiftKeyMask | NSControlKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSControlKeyMask],
+//									 [NSNumber numberWithUnsignedInteger:NSControlKeyMask | NSShiftKeyMask],
+									 nil];
+	
+	NSMutableAttributedString *results = [[NSMutableAttributedString alloc] init];
+	NSMutableParagraphStyle *paragrpahStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+
+	[paragrpahStyle setTabStops:[NSArray arrayWithObject:[[NSTextTab alloc] initWithType:NSLeftTabStopType location:300]]];
+	
+	for (NSString *eachCharacter in [[validKeyEquivalentsToStringRepresentations allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
+		eachCharacter = [validKeyEquivalentsToStringRepresentations objectForKey:eachCharacter];
+		
+		for (NSNumber *eachModifiers in modifierCombinations) {
+			NSString *keyEquivalent = [[self keyEquivalentModifierMaskDescription:[eachModifiers unsignedIntegerValue]] stringByAppendingFormat:@"-%@", eachCharacter];				
+			NSMenuItem *menuItemForKeyEquivalent = [existingKeyEquivalents objectForKey:keyEquivalent];
+			NSColor *color;
+			
+			if (menuItemForKeyEquivalent) {
+				[results appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\t%@\n", keyEquivalent, [menuItemForKeyEquivalent title]]]];
+				color = [NSColor blackColor];
+			} else {
+				[results appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", keyEquivalent]]];
+				color = [NSColor lightGrayColor];
+			}
+			
+			NSRange range = [[results string] paragraphRangeForRange:NSMakeRange([[results string] length] - 1, 1)];
+			[results addAttribute:NSForegroundColorAttributeName value:color range:range];
+			[results addAttribute:NSParagraphStyleAttributeName value:paragrpahStyle range:range];
+		}
+	}
+			
+	return results;
+}
+
 - (NSArray *)allItems:(BOOL)includeSubmenus {
 	NSMutableArray *allItems = [NSMutableArray arrayWithCapacity:[self numberOfItems]];
 	for (NSMenuItem *each in [self itemArray]) {

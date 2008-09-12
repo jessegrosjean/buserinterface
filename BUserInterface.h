@@ -35,6 +35,8 @@
 
 @interface NSMenu (BUserInterfaceAdditions)
 
++ (NSAttributedString *)mainMenuKeyEquivalentsReport;
+
 - (NSArray *)allItems:(BOOL)includeSubmenus;
 - (NSMenuItem *)itemWithRepresentedObject:(id)representedObject;
 
