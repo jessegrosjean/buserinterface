@@ -64,9 +64,8 @@
 					
 					if ([itemIdentifiersToConfigurationElements objectForKey:identifier]) {
 						[allowedItemIdentifiers removeObject:identifier];
-						[defaultItemIdentifiers removeObject:identifier];
 						[selectableItemIdentifiers removeObject:identifier];
-						BLogWarning([NSString stringWithFormat:@"toolbar item identifier %@ contributer is being replaced by new configuration element with same identifier %@", identifier, eachItem]);
+						BLogInfo([NSString stringWithFormat:@"toolbar item identifier %@ contributer is being replaced by new configuration element with same identifier %@", identifier, eachItem]);
 					}
 					
 					[itemIdentifiersToConfigurationElements setObject:eachItem forKey:identifier];
