@@ -116,6 +116,7 @@
 			<menuitem title="%Bold" id="bold" action="addFontTrait:" keyEquivalent="b" target="NSFontManager sharedFontManager" tag="2" />
 			<menuitem title="%Italic" id="italic" action="addFontTrait:" keyEquivalent="i" target="NSFontManager sharedFontManager" tag="1" />
 			<menuitem title="%Underline" id="underline" action="underline:" keyEquivalent="u" />
+			<menuitem title="%Strikethrough" id="strikethrough" action="strikethrough:" />
 			<menuitem title="%Outline" id="outline" action="outline:" />
 			<menuitem title="%Styles..." id="styles" action="orderFrontStylesPanel:" target="NSFontManager sharedFontManager" />
 			<separator group="biggerGroup" />
