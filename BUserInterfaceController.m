@@ -19,6 +19,14 @@
 
 #pragma mark Class Methods
 
++ (void)initialize {
+    if (self == [BUserInterfaceController class]) {
+		[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+																 [NSNumber numberWithInteger:0], @"UIApplicationLaunchCount",
+																 nil]];
+	}
+}
+
 + (id)sharedInstance {
     static id sharedInstance = nil;
     if (sharedInstance == nil) {
@@ -127,6 +135,8 @@
 			}
 		}
 	}
+	
+	[userDefaults setInteger:[[userDefaults objectForKey:@"UIApplicationLaunchCount"] integerValue] + 1 forKey:@"UIApplicationLaunchCount"];
 }
 
 @end

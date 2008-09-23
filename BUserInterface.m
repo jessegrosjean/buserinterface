@@ -17,6 +17,10 @@
     }
 }
 
++ (NSUInteger)applicationLaunchCount {
+	return [[[NSUserDefaults standardUserDefaults] objectForKey:@"UIApplicationLaunchCount"] integerValue];
+}
+
 static SEL doubleTapShiftKeyAction = NULL;
 static SEL doubleTapControlKeyAction = NULL;
 static SEL doubleTapAlternateKeyAction = NULL;

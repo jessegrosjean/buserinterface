@@ -14,6 +14,7 @@
 
 @interface NSApplication (BUserInterfaceAdditions)
 
++ (NSUInteger)applicationLaunchCount;
 + (SEL)doubleTapShiftKeyAction;
 + (void)setDoubleTapShiftKeyAction:(SEL)action;
 + (SEL)doubleTapControlKeyAction;
