@@ -14,6 +14,7 @@
 + (void)load {
     if (self == [NSApplication class]) {
 		[NSApplication replaceMethod:@selector(sendEvent:) withMethod:@selector(BUserInterface_sendEvent:)];
+		[NSApplication replaceMethod:@selector(activateIgnoringOtherApps:) withMethod:@selector(BUserInterface_activateIgnoringOtherApps:)];
     }
 }
 
@@ -25,6 +26,7 @@ static SEL doubleTapShiftKeyAction = NULL;
 static SEL doubleTapControlKeyAction = NULL;
 static SEL doubleTapAlternateKeyAction = NULL;
 static SEL doubleTapCommandKeyAction = NULL;
+static BOOL skipNextActiviation = NO;
 
 + (SEL)doubleTapShiftKeyAction {
 	return doubleTapShiftKeyAction;
@@ -56,6 +58,11 @@ static SEL doubleTapCommandKeyAction = NULL;
 
 + (void)setDoubleTapCommandKeyAction:(SEL)action {
 	doubleTapCommandKeyAction = action;
+}
+
++ (void)skipNextActiviation {
+	// Hack because in Leopard services always active the application.
+	skipNextActiviation = YES;
 }
 
 // states:
@@ -152,6 +159,14 @@ static BOOL lastCommandKeyDown;
 	}	
 	
 	[self BUserInterface_sendEvent:anEvent];
+}
+
+- (void)BUserInterface_activateIgnoringOtherApps:(BOOL)flag {
+	if (skipNextActiviation) {
+		flag = NO;
+		skipNextActiviation = NO;
+	}	
+	[self BUserInterface_activateIgnoringOtherApps:flag];
 }
 
 @end

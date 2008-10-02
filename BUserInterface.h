@@ -23,6 +23,7 @@
 + (void)setDoubleTapAlternateKeyAction:(SEL)action;
 + (SEL)doubleTapCommandKeyAction;
 + (void)setDoubleTapCommandKeyAction:(SEL)action;
++ (void)skipNextActiviation;
 
 @end
 
