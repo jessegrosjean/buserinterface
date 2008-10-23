@@ -43,3 +43,18 @@
 - (NSMenuItem *)itemWithRepresentedObject:(id)representedObject;
 
 @end
+
+@interface BFontNameToDisplayNameTransformer : NSValueTransformer {
+}
+@end
+
+@interface BTextFieldFontChooser : NSTextField {
+	NSString *fontDefaultsKey;
+}
+
+@property(retain) NSString *fontDefaultsKey;
+@property(readonly) NSFont *selectedFont;
+
+- (IBAction)chooseFont:(id)sender;
+
+@end

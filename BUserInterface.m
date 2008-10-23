@@ -359,3 +359,119 @@ static BOOL lastCommandKeyDown;
 }
 
 @end
+
+@implementation BFontNameToDisplayNameTransformer
+
++ (void)initialize {
+	[NSValueTransformer setValueTransformer:[[BFontNameToDisplayNameTransformer alloc] init] forName:@"BFontNameToDisplayNameTransformer"];
+}
+
++ (Class)transformedValueClass {
+    return [NSString class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+- (id)transformedValue:(id)aValue {
+    NSFont *font = [NSFont fontWithName:aValue size:12];
+	return [font displayName];
+}
+
+@end
+
+@implementation BTextFieldFontChooser
+
+- (void)commonInit {
+	[self setEditable:NO];
+	[self setFocusRingType:NSFocusRingTypeNone];
+}
+
+- (id)init {
+	if (self = [super init]) {
+		[self commonInit];
+	}
+	return self;
+}
+
+- (void)awakeFromNib {
+	[self commonInit];
+}
+
+- (BOOL)acceptsFirstResponder {
+	return YES;
+}
+
+- (BOOL)becomeFirstResponder {
+	return YES;
+}
+
+- (BOOL)resignFirstResponder {
+	return YES;
+}
+
+@synthesize fontDefaultsKey;
+
+- (NSString *)fontDefaultsKeyObservablePath {
+	return [NSString stringWithFormat:@"values.%@", fontDefaultsKey];
+}
+
+- (void)updateTextField {
+	NSFont *font = [self selectedFont];
+	if (font) {
+		[self setStringValue:[NSString stringWithFormat:@"%@ %.1f pt.", [font displayName], [font pointSize]]];
+	} else {
+		[self setStringValue:@""];
+	}
+}
+
+- (void)setFontDefaultsKey:(NSString *)newKey {
+	NSUserDefaultsController *sharedUserDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+	
+	if (fontDefaultsKey) {
+		[sharedUserDefaultsController removeObserver:self forKeyPath:[self fontDefaultsKeyObservablePath]];
+	}
+	
+	fontDefaultsKey = newKey;
+	
+	if (fontDefaultsKey) {
+		[sharedUserDefaultsController addObserver:self forKeyPath:[self fontDefaultsKeyObservablePath] options:0 context:NULL];
+	}
+	
+	[self updateTextField];
+}
+
+- (NSFont *)selectedFont {
+	NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:self.fontDefaultsKey];
+	if (data) {
+		return [NSUnarchiver unarchiveObjectWithData:data];
+	}
+	return nil;
+}
+
+- (void)changeFont:(id)sender {
+	NSFontManager *fontManager = [NSFontManager sharedFontManager];
+	NSFont *selectedFont = [fontManager selectedFont];
+	if (selectedFont == nil) selectedFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+	selectedFont = [fontManager convertFont:selectedFont];
+	[[NSUserDefaults standardUserDefaults] setValue:[NSArchiver archivedDataWithRootObject:selectedFont] forKey:self.fontDefaultsKey];
+}
+
+- (IBAction)chooseFont:(id)sender {
+	NSData *fontData = [[NSUserDefaults standardUserDefaults] objectForKey:self.fontDefaultsKey];
+	NSFont *font = fontData ? [NSUnarchiver unarchiveObjectWithData:fontData] : nil;
+	if (font) [[NSFontManager sharedFontManager] setSelectedFont:font isMultiple:NO];
+    [[NSFontManager sharedFontManager] orderFrontFontPanel:self];
+    [[self window] makeFirstResponder:self];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqualToString:[self fontDefaultsKeyObservablePath]]) {
+		[self updateTextField];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
+
+@end
