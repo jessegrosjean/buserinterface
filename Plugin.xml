@@ -103,12 +103,6 @@
 		</menu>
 
 		<menu id="com.blocks.BUserInterface.menus.main.help">
-			<menuitem title="%NewApplication Help" id="help" action="openApplicationHelp:" keyEquivalent="?" />
-			<separator group="webPageGroup" />
-			<menuitem title="%Web Page..." id="webPage" action="openApplicationWebPage:" />
-			<menuitem title="%User Forums..." id="userForums" action="openApplicationUserForums:" />
-			<menuitem title="%Release Notes..." id="releaseNotes" action="openApplicationReleaseNotes:" />
-			<menuitem title="%Acknowledgments..." id="acknowledgments" action="openApplicationAcknowledgments:" />
 		</menu>
 		
 		<menu id="com.blocks.BUserInterface.menus.format.font">
