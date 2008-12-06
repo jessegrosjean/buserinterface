@@ -9,11 +9,30 @@
 #import "BUserInterface.h"
 
 
+static BOOL inCompleteMethod = NO;
+
+@implementation NSTextView (BUserInterfaceMethodReplacements)
+
++ (void)load {
+    if (self == [NSTextView class]) {
+		[NSTextView replaceMethod:@selector(complete:) withMethod:@selector(BUserInterface_complete:)];
+    }
+}
+
+- (void)BUserInterface_complete:(id)sender {
+	inCompleteMethod = YES;
+	[self BUserInterface_complete:sender];
+	inCompleteMethod = NO;
+}
+
+@end
+
 @implementation NSApplication (BUserInterfaceAdditions)
 
 + (void)load {
     if (self == [NSApplication class]) {
 		[NSApplication replaceMethod:@selector(sendEvent:) withMethod:@selector(BUserInterface_sendEvent:)];
+		[NSApplication replaceMethod:@selector(nextEventMatchingMask:untilDate:inMode:dequeue:) withMethod:@selector(BUserInterface_nextEventMatchingMask:untilDate:inMode:dequeue:)];
 		[NSApplication replaceMethod:@selector(activateIgnoringOtherApps:) withMethod:@selector(BUserInterface_activateIgnoringOtherApps:)];
     }
 }
@@ -159,6 +178,13 @@ static BOOL lastCommandKeyDown;
 	}	
 	
 	[self BUserInterface_sendEvent:anEvent];
+}
+
+- (NSEvent *)BUserInterface_nextEventMatchingMask:(NSUInteger)mask untilDate:(NSDate *)expiration inMode:(NSString *)mode dequeue:(BOOL)deqFlag {
+	if (inCompleteMethod) {
+		mask &= ~NSAppKitDefinedMask;
+	}
+	return [self BUserInterface_nextEventMatchingMask:mask untilDate:expiration inMode:mode dequeue:deqFlag];
 }
 
 - (void)BUserInterface_activateIgnoringOtherApps:(BOOL)flag {
