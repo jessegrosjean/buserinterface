@@ -99,28 +99,44 @@ static BOOL lastShiftKeyDown;
 static BOOL lastControlKeyDown;
 static BOOL lastAlternateKeyDown;
 static BOOL lastCommandKeyDown;
+static NSInteger isAnyKeyDownCount = 0;
+
+- (void)BUserInterface_clearStateFlags {
+	shiftKeyState = 0;
+	controlKeyState = 0;
+	alternateKeyState = 0;
+	commandKeyState = 0;
+}
 
 - (void)BUserInterface_sendEvent:(NSEvent *)anEvent {
-	if ([anEvent type] == NSFlagsChanged) {
-		NSUInteger modifierFlags = [anEvent modifierFlags];
+	NSEventType type = [anEvent type];
+	if (type == NSKeyDown) {
+		[self BUserInterface_clearStateFlags];
+	} else if (type == NSKeyUp) {
+		[self BUserInterface_clearStateFlags];
+	} else if (type == NSFlagsChanged) {
 		NSTimeInterval newTimestamp = [anEvent timestamp];
-
+		NSUInteger modifierFlags = [anEvent modifierFlags]; 
+		NSUInteger activeStateCount = 0;
+		
+		if (shiftKeyState > 0) activeStateCount++;
+		if (controlKeyState > 0) activeStateCount++;
+		if (alternateKeyState > 0) activeStateCount++;
+		if (commandKeyState > 0) activeStateCount++;
+						
 		if (shiftKeyState == 0 && controlKeyState == 0 && alternateKeyState == 0 && commandKeyState == 0) {
 			startTimeStamp = newTimestamp;
-		} else if (newTimestamp - startTimeStamp > 0.5) {
-			shiftKeyState = 0;
-			controlKeyState = 0;
-			alternateKeyState = 0;
-			commandKeyState = 0;
+		} else if (activeStateCount > 1 || newTimestamp - startTimeStamp > 0.5) {
+			[self BUserInterface_clearStateFlags];
 			startTimeStamp = newTimestamp;
 		}
-
+		
 		BOOL shiftKeyDown = ((modifierFlags & NSAlphaShiftKeyMask) != 0 || (modifierFlags & NSShiftKeyMask));
 		BOOL controlKeyDown = (modifierFlags & NSControlKeyMask) != 0;
 		BOOL alternateKeyDown = (modifierFlags & NSAlternateKeyMask) != 0;
 		BOOL commandKeyDown = (modifierFlags & NSCommandKeyMask) != 0;
 		
-		if (doubleTapShiftKeyAction != nil && lastShiftKeyDown != shiftKeyDown) {
+		if (lastShiftKeyDown != shiftKeyDown) {
 			if (shiftKeyDown && shiftKeyState == 0) {
 				shiftKeyState++;
 			} else if (!shiftKeyDown && shiftKeyState == 1) {
@@ -128,54 +144,62 @@ static BOOL lastCommandKeyDown;
 			} else if (shiftKeyDown && shiftKeyState == 2) {
 				shiftKeyState++;
 			} else if (!shiftKeyDown && shiftKeyState == 3) {
-				[self sendAction:doubleTapShiftKeyAction to:nil from:nil];
+				if (doubleTapShiftKeyAction) {
+					[self sendAction:doubleTapShiftKeyAction to:nil from:nil];
+				}
 				shiftKeyState = 0;
 			}
 			lastShiftKeyDown = shiftKeyDown;
 		}
-
-		if (doubleTapControlKeyAction != nil && lastControlKeyDown != controlKeyDown) {
-			if (controlKeyDown && shiftKeyState == 0) {
+		
+		if (lastControlKeyDown != controlKeyDown) {
+			if (controlKeyDown && controlKeyState == 0) {
 				controlKeyState++;
 			} else if (!controlKeyDown && controlKeyState == 1) {
 				controlKeyState++;
 			} else if (controlKeyDown && controlKeyState == 2) {
 				controlKeyState++;
 			} else if (!controlKeyDown && controlKeyState == 3) {
-				[self sendAction:doubleTapControlKeyAction to:nil from:nil];
+				if (doubleTapControlKeyAction) {
+					[self sendAction:doubleTapControlKeyAction to:nil from:nil];
+				}
 				controlKeyState = 0;
 			}
 			controlKeyDown = lastControlKeyDown;
 		}
-		    
-		if (doubleTapAlternateKeyAction != nil && lastAlternateKeyDown != alternateKeyDown) {
-			if (alternateKeyDown && shiftKeyState == 0) {
+		
+		if (lastAlternateKeyDown != alternateKeyDown) {
+			if (alternateKeyDown && alternateKeyState == 0) {
 				alternateKeyState++;
 			} else if (!alternateKeyDown && alternateKeyState == 1) {
 				alternateKeyState++;
 			} else if (alternateKeyDown && alternateKeyState == 2) {
 				alternateKeyState++;
 			} else if (!alternateKeyDown && alternateKeyState == 3) {
-				[self sendAction:doubleTapAlternateKeyAction to:nil from:nil];
+				if (doubleTapAlternateKeyAction) {
+					[self sendAction:doubleTapAlternateKeyAction to:nil from:nil];
+				}
 				alternateKeyState = 0;
 			}
 			lastAlternateKeyDown = alternateKeyDown;
 		}
 		
-		if (doubleTapCommandKeyAction != nil && lastCommandKeyDown != commandKeyDown) {
-			if (commandKeyDown && shiftKeyState == 0) {
+		if (lastCommandKeyDown != commandKeyDown) {
+			if (commandKeyDown && commandKeyState == 0) {
 				commandKeyState++;
 			} else if (!commandKeyDown && commandKeyState == 1) {
 				commandKeyState++;
 			} else if (commandKeyDown && commandKeyState == 2) {
 				commandKeyState++;
 			} else if (!commandKeyDown && commandKeyState == 3) {
-				[self sendAction:doubleTapCommandKeyAction to:nil from:nil];
+				if (doubleTapCommandKeyAction) {
+					[self sendAction:doubleTapCommandKeyAction to:nil from:nil];
+				}
 				commandKeyState = 0;
 			}
 			lastCommandKeyDown = commandKeyDown;
 		}		
-	}	
+	}
 	
 	[self BUserInterface_sendEvent:anEvent];
 }
