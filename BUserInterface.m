@@ -99,7 +99,6 @@ static BOOL lastShiftKeyDown;
 static BOOL lastControlKeyDown;
 static BOOL lastAlternateKeyDown;
 static BOOL lastCommandKeyDown;
-static NSInteger isAnyKeyDownCount = 0;
 
 - (void)BUserInterface_clearStateFlags {
 	shiftKeyState = 0;
