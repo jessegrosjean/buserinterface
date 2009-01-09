@@ -38,6 +38,7 @@
 @interface NSMenu (BUserInterfaceAdditions)
 
 + (NSAttributedString *)mainMenuKeyEquivalentsReport;
++ (NSMenu *)menuForMenuExtensionPoint:(NSString *)extensionPoint;
 
 - (NSArray *)allItems:(BOOL)includeSubmenus;
 - (NSMenuItem *)itemWithRepresentedObject:(id)representedObject;
