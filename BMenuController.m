@@ -116,6 +116,7 @@
 		NSString *title = [configurationElement localizedAttributeForKey:@"title"];
 		NSString *identifier = [configurationElement attributeForKey:@"id"];
 		NSString *location = [configurationElement attributeForKey:@"location"];
+		NSString *indentationLevel = [configurationElement attributeForKey:@"indentationLevel"];
 		NSString *keyEquivalent = [configurationElement attributeForKey:@"keyEquivalent"];
 		NSString *keyEquivalentModifierMask = [configurationElement attributeForKey:@"keyEquivalentModifierMask"];
 		NSString *submenuID = [configurationElement attributeForKey:@"submenu"];
@@ -139,6 +140,11 @@
 		}
 
 		if (title != nil) [menuItem setTitle:title];
+		if (indentationLevel != nil) {
+			NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+			[menuItem setIndentationLevel:[[numberFormatter numberFromString:indentationLevel] integerValue]];
+			[numberFormatter release];
+		}
 		if (action != nil) [menuItem setAction:action];
 		if (identifier != nil) [menuItem setRepresentedObject:identifier];
 		if (tag != 0) [menuItem setTag:tag];
