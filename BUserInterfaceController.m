@@ -74,8 +74,8 @@
 			menu = applicationMenu;
 		} else if ([menuExtensionPoint isEqualToString:@"com.blocks.BUserInterface.menus.main.application.service"]) {
 			menu = servicesMenu;
-		} else if ([menuExtensionPoint isEqualToString:@"com.blocks.BUserInterface.menus.main.file.openRecent"]) {
-			menu = openRecentMenu;
+//		} else if ([menuExtensionPoint isEqualToString:@"com.blocks.BUserInterface.menus.main.file.openRecent"]) {
+//			menu = openRecentMenu;
 		} else if ([menuExtensionPoint isEqualToString:@"com.blocks.BUserInterface.menus.main.format.font"]) {
 			menu = fontMenu;
 		} else if ([menuExtensionPoint isEqualToString:@"com.blocks.BUserInterface.menus.main.window"]) {
