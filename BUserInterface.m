@@ -387,6 +387,10 @@ static BOOL lastCommandKeyDown;
 	return [[[BUserInterfaceController sharedInstance] menuControllerForMenuExtensionPoint:extensionPoint] menu];
 }
 
++ (NSMenuItem *)menuItemForMenuItemExtensionPoint:(NSString *)extensionPoint {
+	return [[[[BUserInterfaceController sharedInstance] menuControllerForMenuExtensionPoint:[extensionPoint stringByDeletingPathExtension]] menu] itemWithRepresentedObject:[extensionPoint pathExtension]];
+}
+
 - (NSArray *)allItems:(BOOL)includeSubmenus {
 	NSMutableArray *allItems = [NSMutableArray arrayWithCapacity:[self numberOfItems]];
 	for (NSMenuItem *each in [self itemArray]) {

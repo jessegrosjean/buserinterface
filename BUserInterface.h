@@ -39,6 +39,7 @@
 
 + (NSAttributedString *)mainMenuKeyEquivalentsReport;
 + (NSMenu *)menuForMenuExtensionPoint:(NSString *)extensionPoint;
++ (NSMenuItem *)menuItemForMenuItemExtensionPoint:(NSString *)extensionPoint;
 
 - (NSArray *)allItems:(BOOL)includeSubmenus;
 - (NSMenuItem *)itemWithRepresentedObject:(id)representedObject;
