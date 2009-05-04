@@ -56,7 +56,7 @@
 			NSArray *locationComponents = [location componentsSeparatedByString:@":"];
 			NSString *locationSpecifier = [locationComponents count] > 0 ? [locationComponents objectAtIndex:0] : nil;
 			NSString *relativeToID = [locationComponents count] > 1 ? [locationComponents objectAtIndex:1] : nil;
-			NSUInteger relativeToIndex = -1;
+			NSInteger relativeToIndex = -1;
 			BOOL relativeToInvalide = NO;
 			
 			if (relativeToID) {

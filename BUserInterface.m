@@ -164,7 +164,7 @@ static BOOL lastCommandKeyDown;
 				}
 				controlKeyState = 0;
 			}
-			controlKeyDown = lastControlKeyDown;
+			lastControlKeyDown = controlKeyDown;
 		}
 		
 		if (lastAlternateKeyDown != alternateKeyDown) {
